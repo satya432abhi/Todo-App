@@ -1,0 +1,48 @@
+<html>
+    <head>
+       <title><%= title%></title>
+       
+      <!--our css should be below all other styles so that we can be able to override it-->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+      <link rel="stylesheet" href="/css/home.css">
+      
+    </head>
+
+    <body>
+         <h1><%= title%></h1>
+         <br>
+         <form action="/Add-task" method="POST">
+            <label for="descrip">Description</label>
+            <br>
+            <input id="descrip" type="text" name="description" placeholder="What do you need to do?">
+            <br>
+            <h3>Category</h3>        
+            <label for="Choose a Category"></label>
+            <select name="category">
+                <option value="School">School</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+            </select>
+
+            <label for="deadline">Due Date</label>
+            <br>
+            <input id="date" name="deadline" type="datetime-local">
+
+            <button type="Submit">Add Task</button>
+
+         </form>
+        <div >
+          <ul>
+             <% for(let i of list){ %>
+                 <li>
+                   <div >
+                   <p><%= i.description %></p>
+                   <p><%= i.category %></p>
+                   <p><%= i.date %></p>
+                   </div>
+                 </li>
+            <% } %>
+          </ul>
+        </div>
+    </body>
+</html>
