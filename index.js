@@ -16,7 +16,6 @@ app.set('views','./views');
 /*used as middle-ware or as a parser*/
 app.use(express.urlencoded());
 app.use(express.static('assets'));
-//call karu ? ok 8980473102
 
 app.post('/Add-task',function(req,res){
 
@@ -40,6 +39,18 @@ app.post('/Add-task',function(req,res){
     // return res.redirect('back');
     console.log(req.body.description);
     console.log(req.body.category);
+});
+
+app.get('/delete-list',function(req,res){
+    let id= req.query.id;
+    Todo.findByIdAndDelete(id,function(err){
+        if(err)
+        {
+            console.log('error in deleting a list item');
+            return;
+        }
+        return res.redirect('back');
+    });
 });
 
 app.listen(port,function(err){
